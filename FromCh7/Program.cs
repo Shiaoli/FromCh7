@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace FromCh7
 {
     public class MusicTitle
@@ -29,12 +30,25 @@ namespace FromCh7
             }
         }
     }
+
+   
+
+    delegate double DoubleOp(double x);
+    
+    
     class Program
     {
+        private delegate string GetAString();
+
         static void Main(string[] args)
         {
             Program pro = new Program();
-            pro.MusicTitlePractice();
+            //pro.MusicTitlePractice();
+            //pro.DelegatePractice();
+            //pro.DelegatePractice2();
+            //pro.DelegatePractice3();
+            //pro.DelegatePractice4();
+            pro.DelegatePractice5();
         }
         public void MusicTitlePractice()
         {
@@ -55,6 +69,80 @@ namespace FromCh7
             }
 
 
+        }
+
+        public void DelegatePractice()
+        {
+            int x = 40;
+            GetAString firstStringMethod = x.ToString;
+            Console.WriteLine($"first string is {firstStringMethod()}");
+            var balance = new Currency(30, 45);
+            firstStringMethod = balance.ToString;
+            Console.WriteLine($"second string is {firstStringMethod()}");
+            firstStringMethod = new GetAString(Currency.GetCurrencyUnit);
+            Console.WriteLine($"third string is {firstStringMethod()}");
+        }
+
+        public void ProcessAndDisplayNumber(DoubleOp operation, double number)
+        {
+            Console.WriteLine($"The result is: {operation(number)}");
+        }
+
+        public void DelegatePractice2()
+        {
+            DoubleOp[] operations =
+            {
+                MathOpeartoions.MultiplyByTwo,
+                MathOpeartoions.Square
+            };
+            for (int i = 0; i < operations.Length; i++)
+            {
+                Console.WriteLine($"Using operation[{i}]");
+                ProcessAndDisplayNumber(operations[i], 2);
+                ProcessAndDisplayNumber(operations[i], 3.12);
+            }
+        }
+
+        public void ProcessAndDisplay2(Func<double,double> action, double number)
+        {
+            Console.WriteLine($"The result is: {action(number)}");
+        }
+
+        public void DelegatePractice3()
+        {
+            Func<double, double>[] operations =
+            {
+                MathOpeartoions.MultiplyByTwo,
+                MathOpeartoions.Square
+            };
+        }
+
+        public void DelegatePractice4()
+        {
+            Employee[] employees =
+            {
+                new Employee("name1", 1000),
+                new Employee("name2",2000),
+                new Employee("name3",1500),
+                new Employee("name4",2500)
+            };
+            BubbleSorter.Sorter(employees, Employee.CompareSalary);
+            foreach(var employee in employees)
+            {
+                Console.WriteLine(employee);
+            }
+        }
+
+        public void DelegatePractice5()
+        {
+            string mid = ", second string, ";
+            Func<string, string> andDel = delegate (string param)
+            {
+                param += mid;
+                param += "thir string";
+                return param;
+            };
+            Console.WriteLine(andDel("first string"));
         }
     }
 }
