@@ -48,7 +48,10 @@ namespace FromCh7
             //pro.DelegatePractice2();
             //pro.DelegatePractice3();
             //pro.DelegatePractice4();
-            pro.DelegatePractice5();
+            //pro.DelegatePractice5();
+            //pro.StringsPractice();
+            //pro.StringPractice2();
+            pro.StringPractice3();
         }
         public void MusicTitlePractice()
         {
@@ -143,6 +146,45 @@ namespace FromCh7
                 return param;
             };
             Console.WriteLine(andDel("first string"));
+        }
+
+        //Strings and regular exoressions
+        public void StringsPractice()
+        {
+            string greetingText = "Hello from LittleMao. ";
+            greetingText += "Hello from Karena. ";
+            greetingText += "Hello from Yilei. ";
+            Console.WriteLine($"Not encoded: {greetingText}");
+            for(int i = 'z'; i >= 'a'; i--)
+            {
+                char oldL = (char)i;
+                char newL = (char)(i + 1);
+                greetingText =  greetingText.Replace(oldL, newL);
+            }
+            for(int i='Z'; i>= 'A'; i--)
+            {
+                char oldL = (char)i;
+                char newL = (char)i;
+                greetingText= greetingText.Replace(oldL, newL);
+            }
+            Console.WriteLine($"Encoded: {greetingText}");
+        }
+
+        public void StringPractice2()
+        {
+            int x = 3, y = 4;
+            FormattableString string1 = $"X is {x}, Y is {y}, the addition is {x + y}";
+            for(int i=0; i<string1.ArgumentCount; i++)
+            {
+                Console.WriteLine($"the {i}th argument is {string1.GetArgument(i)}");
+            }
+            Console.WriteLine(string1);
+        }
+
+        public void StringPractice3()
+        {
+            var day = new DateTime(2018, 2, 16);
+            Console.WriteLine($"{day:d}");
         }
     }
 }
