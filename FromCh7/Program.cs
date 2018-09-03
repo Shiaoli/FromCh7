@@ -34,6 +34,14 @@ namespace FromCh7
    
 
     delegate double DoubleOp(double x);
+
+    public static class StringExtensionable
+    {
+        public static void Foo(this string s)
+        {
+            Console.WriteLine($"Foo invoke for {s}");
+        }
+    }
     
     
     class Program
@@ -51,7 +59,8 @@ namespace FromCh7
             //pro.DelegatePractice5();
             //pro.StringsPractice();
             //pro.StringPractice2();
-            pro.StringPractice3();
+            //pro.StringPractice3();
+            pro.ExtensionPractice();
         }
         public void MusicTitlePractice()
         {
@@ -185,6 +194,12 @@ namespace FromCh7
         {
             var day = new DateTime(2018, 2, 16);
             Console.WriteLine($"{day:d}");
+        }
+
+        public void ExtensionPractice()
+        {
+            string s = "Hello world";
+            s.Foo();
         }
     }
 }

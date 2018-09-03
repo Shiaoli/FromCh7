@@ -52,6 +52,10 @@ namespace FromCh7
         {
             int compare = LastName?.CompareTo(other?.LastName) ?? -1;
             if(compare == 0)
+            {
+                return FirstName?.CompareTo(other?.FirstName) ?? -1;
+            }
+            return compare;
         }
     }
     class Collections
